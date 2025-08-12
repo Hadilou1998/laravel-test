@@ -12,14 +12,14 @@ class MakeView extends Command
      *
      * @var string
      */
-    protected $signature = 'make:view properties.index';
+    protected $signature = 'make:view {name : le nom de la vue}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Créer une nouvelle vue Blade avec un template par défaut';
+    protected $description = 'Crée une nouvelle vue Blade avec un modèle par défaut';
 
     /**
      * filesystem instance
