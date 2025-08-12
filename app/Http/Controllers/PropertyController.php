@@ -10,9 +10,12 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        $properties = Property::all();
+        $properties = Property::with('bookings')->paginate(12);
         return view('properties.index', compact('properties'));
-
     }
 
+    public function show(Property $property)
+    {
+        return view('properties.show', compact('property'));
+    }
 }
