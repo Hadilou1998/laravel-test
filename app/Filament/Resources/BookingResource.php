@@ -14,7 +14,8 @@ class BookingResource extends Resource
 {
     protected static ?string $model = Booking::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Gestion Immobilière';
+    protected static ?string $navigationGroup = 'Gestion des Réservations';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -35,12 +36,21 @@ class BookingResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table->columns([
-            Tables\Columns\TextColumn::make('user.name')->label('Client'),
-            Tables\Columns\TextColumn::make('property.name')->label('Propriété'),
-            Tables\Columns\TextColumn::make('start_date')->date(),
-            Tables\Columns\TextColumn::make('end_date')->date(),
-        ]);
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('user.name')->label('User'),
+                Tables\Columns\TextColumn::make('property.name')->label('Property'),
+                Tables\Columns\TextColumn::make('start_date')->date(),
+                Tables\Columns\TextColumn::make('end_date')->date(),
+                Tables\Columns\TextColumn::make('created_at')->date(),
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]);
     }
 
     public static function getRelations(): array
