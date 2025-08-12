@@ -38,6 +38,7 @@ class BookingResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('user.name')->label('User'),
                 Tables\Columns\TextColumn::make('property.name')->label('Property'),
                 Tables\Columns\TextColumn::make('start_date')->date(),
