@@ -5,7 +5,7 @@ use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('properties.index');
 });
 
 Route::get('/dashboard', function () {
@@ -17,8 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/properties', [PropertyController::class, 'index'])->name('properties.index');
-    Route::post('/properties', [PropertyController::class, 'store'])->name('properties.store');
-    Route::get('/properties/{property}/edit', [PropertyController::class, 'edit'])->name('properties.edit');
+    Route::get('/properties/{property}', [PropertyController::class, 'show'])->name('properties.show');
 });
 
 require __DIR__.'/auth.php';
