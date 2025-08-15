@@ -1,5 +1,8 @@
 name: Tests
 
+env:
+  APP_ENV: testing
+
 on:
   push:
     branches:
